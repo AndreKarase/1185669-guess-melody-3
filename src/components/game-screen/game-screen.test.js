@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GameScreen from './game-screen.jsx';
+import {GameScreen} from './game-screen.jsx';
 
 const children = <div className="children-component"/>;
 
@@ -9,6 +9,7 @@ describe(`Should render GameScreen`, () => {
     const tree = renderer.create(
         <GameScreen
           type="artist"
+          mistakes={3}
         >
           {children}
         </GameScreen>
@@ -21,6 +22,7 @@ describe(`Should render GameScreen`, () => {
     const tree = renderer.create(
         <GameScreen
           type="genre"
+          mistakes={3}
         >
           {children}
         </GameScreen>

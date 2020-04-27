@@ -5,16 +5,10 @@ import AudioPlayer from "./audio-player.jsx";
 
 configure({adapter: new Adapter()});
 
-const mock = {
-  song: {
-    src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`
-  }
-};
-
 it(`Click by Play button calls callback`, () => {
   const handlePlayButtonClick = jest.fn();
   const wrapper = shallow(<AudioPlayer
-    src={mock.song.src}
+    isLoading={false}
     isPlaying={false}
     onPlayButtonClick={handlePlayButtonClick}>
     <audio />

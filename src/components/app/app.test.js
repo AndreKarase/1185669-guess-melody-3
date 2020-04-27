@@ -52,6 +52,7 @@ describe(`Should render App`, () => {
         <Provider store={store}>
           <App
             maxMistakes = {3}
+            mistakes = {0}
             questions = {questions}
             onWelcomeButtonClick = {() => {}}
             onUserAnswer = {() => {}}
@@ -72,6 +73,7 @@ describe(`Should render App`, () => {
         <Provider store={store}>
           <App
             maxMistakes = {3}
+            mistakes = {0}
             questions = {questions}
             onWelcomeButtonClick = {() => {}}
             onUserAnswer = {() => {}}
@@ -96,10 +98,62 @@ describe(`Should render App`, () => {
         <Provider store={store}>
           <App
             maxMistakes = {3}
+            mistakes = {0}
             questions = {questions}
             onWelcomeButtonClick = {() => {}}
             onUserAnswer = {() => {}}
             step = {1}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render GameOverScreen`, () => {
+    const store = mockStore({
+      mistakes: 3
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            maxMistakes = {3}
+            mistakes = {3}
+            questions = {questions}
+            onWelcomeButtonClick = {() => {}}
+            onUserAnswer = {() => {}}
+            step = {1}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Render WinScreen`, () => {
+    const store = mockStore({
+      mistakes: 3
+    });
+
+    const tree = renderer.create(
+        <Provider store={store}>
+          <App
+            maxMistakes = {3}
+            mistakes = {0}
+            questions = {questions}
+            onWelcomeButtonClick = {() => {}}
+            onUserAnswer = {() => {}}
+            resetGame = {() => {}}
+            step = {3}
           />
         </Provider>, {
           createNodeMock: () => {
